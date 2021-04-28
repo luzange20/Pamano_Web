@@ -1,0 +1,42 @@
+﻿@model Pamano.Core.Domain.Usuarios
+
+@{
+    ViewData["Title"] = "Editar Usuario";
+    Layout = "~/Views/Shared/_navAdmin.cshtml";
+}
+@section list{
+    <link href="~/css_admin/registrar_proveedor_ADMINISTRADOR.css" rel="stylesheet" />
+}
+
+<div class="Formulario">
+    <form asp-action="Edit" class="form-registro" onsubmit="return validacion()" method="post">
+        <h3 class="form-titulo">Datos de @Html.DisplayFor(model => model.PrimerNombre)</h3>
+        @* <div asp-validation-summary="ModelOnly"></div>*@
+    <div class="cont-input">
+
+        <label class="input-100">Numero de Identificacion</label>
+        <input  type="text" class="input-100" value="@Html.DisplayFor(model => model.IdUsuario)">
+
+        <label class="input-100">Primer Nomrbe</label>
+        <input  type="text" class="input-100" value="@Html.DisplayFor(model => model.PrimerNombre)">
+
+        <label class="input-100">Segundo Nomrbe</label>
+        <input  type="text" class="input-100" value="@Html.DisplayFor(model => model.SegundoNombre)">
+
+        <label class="input-100">Primer Apellido</label>
+        <input  type="text" class="input-100" value="@Html.DisplayFor(model => model.PrimerApellido)">
+
+        <label class="input-100">Segundo Apelldio</label>
+        <input  type="text" class="input-100" value="@Html.DisplayFor(model => model.SegundoApellido)">
+
+        <label class="input-100">Tipo de usuario</label>
+        <select asp-for="IdRol" asp-items="ViewBag.IdRol" class="input-100 )"></select>
+
+        <label class="input-100">Telefono</label>
+        <input  type="text" class="input-100" value="@Html.DisplayFor(model => model.Telefono)">
+
+        <a class="btn-regis" asp-action="Edit" asp-route-id="@Model.IdUsuario">Editar</a>
+        <a class="form-link" asp-action="Index">Volver al listado</a>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+﻿@model Pamano.Core.Domain.Usuarios
+
+@{
+    ViewData["Title"] = "Eliminar Usuario";
+    Layout = "~/Views/Shared/_navAdmin.cshtml";
+}
+@section list{
+    <link href="~/css_admin/registrar_proveedor_ADMINISTRADOR.css" rel="stylesheet" />
+}
+
+<div class="Formulario">
+    <form asp-action="Delete" class="form-registro" onsubmit="return validacion()" method="post">
+        <h2 class="form-titulo">Registro de Proveedores</h2>
+        @* <div asp-validation-summary="ModelOnly"></div>*@
+        <div class="cont-input">
+            <label  class="input-100">Primer Nomrbe</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.PrimerNombre)">
+
+            <label class="input-100">Segundo Nomrbe</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.SegundoNombre)">
+
+            <label class="input-100">Primer Apellido</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.PrimerApellido)">
+
+            <label class="input-100">Segundo Apelldio</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.SegundoApellido)">
+
+            <label class="input-100">Tipo de usuario</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.IdRolNavigation.TipoDeRol)">
+        </div>
+    </form>
+    <form asp-action="Delete" class="form-registro">
+        <div class="cont-input">
+            <input type="hidden" asp-for="IdUsuario" />
+            <input type="submit" value="Eliminar" class="btn-regis btn-enviar" />
+            <a asp-action="Index" class="form-link">Volver al listado</a>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+
+

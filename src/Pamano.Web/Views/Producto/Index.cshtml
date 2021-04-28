@@ -1,0 +1,91 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<Pamano.Core.Domain.Producto>
+
+@{
+    ViewData["Title"] = "Productos";
+    Layout = "~/Views/Shared/_Navegador.cshtml";
+}
+@section productos{
+    <link href="~/css_cliente/prueba1.css" rel="stylesheet" />
+}
+
+<p>
+    <a asp-action="Create">Agregar nuevo producto</a>
+</p>
+<div class="cont">
+    <div class="cont-tabla">
+        <table id="productos" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th>
+                        Caracteristicas
+                    </th>
+                    <th>
+                        Tipo de producto
+                    </th>
+
+                    
+                        <th>
+                            Acciones
+                        </th>
+ 
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CantidadDeProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrecioDelProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CaracteristicasDelProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdTipoDeProductoNavigation.NombreProducto)
+                        </td>
+
+                        <td>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a asp-action="Details" asp-route-id="@item.IdProducto">Detalles |</a>
+
+                                
+                                <a asp-action="Delete" asp-route-id="@item.IdProducto">Eliminar |</a> 
+
+
+                                <a asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a>
+
+                            }
+                            else
+                            {
+                                <a asp-action="Details" asp-route-id="@item.IdProducto">Detalles</a>
+                            }
+
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#productos').DataTable();
+        });
+    </script>
+}

@@ -1,0 +1,33 @@
+﻿@model Pamano.Core.Domain.Producto
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_navAdmin.cshtml";
+}
+@section list{
+    <link href="~/css_admin/registrar_proveedor_ADMINISTRADOR.css" rel="stylesheet" />
+}
+
+<div class="Formulario">
+    <form asp-action="Create" class="form-registro" onsubmit="return validacion()" method="post">
+        <h3 class="form-titulo">Detalles de productos)</h3>
+        @* <div asp-validation-summary="ModelOnly"></div>*@
+        <div class="cont-input">
+
+            <label class="input-100">Cantidad de productos</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.CantidadDeProducto)">
+
+            <label class="input-100">Precio Del Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.PrecioDelProducto)">
+
+            <label class="input-100">Caracteristicas Del Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.CaracteristicasDelProducto)">
+
+            <label class="input-100">Tipo De Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.IdTipoDeProductoNavigation.NombreProducto)">
+
+            <a class="btn-regis" asp-action="Edit" asp-route-id="@Model.IdProducto">Editar</a>
+            <a class="form-link" asp-action="Index">Volver al listado</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+﻿@model Pamano.Core.Domain.OrdenDeVenta
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_navAdmin.cshtml";
+}
+@section list{
+    <link href="~/css_admin/registrar_proveedor_ADMINISTRADOR.css" rel="stylesheet" />
+}
+<div class="Formulario">
+
+    <form class="form-registro" onsubmit="return validacion()" method="post">
+        <h2 class="form-titulo">Detalles orden de venta</h2>
+        <div class="cont-input">
+
+            <label class="input-100"> Cantidad </label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.CantidadDelProducto)">
+
+            <label class="input-100"> Valor Unitario</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.ValorUnitario)">
+
+            <label class="input-100">Valor Total</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.ValorTotal)">
+
+            <label class="input-100">Fecha</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.FechaDeVenta)">
+
+            <label class="input-100">Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.IdProductoNavigation.CaracteristicasDelProducto)">
+
+            <label class="input-100"> Usuario</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.IdUsuarioNavigation.IdUsuario)">
+        </div>
+    </form>
+
+    <form class="form-registro">
+        <div class="cont-input">
+            <input asp-action="Edit" type="submit" value="Editar" asp-route-id="@Model.IdOrdenDeVenta" class="btn-regis btn-enviar" />
+            <a class="form-link" asp-action="Index">Volver a la lista</a>
+        </div>
+    </form>
+</div>

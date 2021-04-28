@@ -1,0 +1,38 @@
+﻿@model Pamano.Core.Domain.Producto
+
+@{
+    ViewData["Title"] = "Borrar Producto";
+    Layout = "~/Views/Shared/_navAdmin.cshtml";
+}
+@section list{
+    <link href="~/css_admin/registrar_proveedor_ADMINISTRADOR.css" rel="stylesheet" />
+}
+
+
+<div class="Formulario">
+    <form asp-action="Create" class="form-registro" onsubmit="return validacion()" method="post">
+        <h2 class="form-titulo">Borrar Producto</h2>
+        @* <div asp-validation-summary="ModelOnly"></div>*@
+        <div class="cont-input">
+            <label class="input-100">Cantidad De Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.CantidadDeProducto)">
+
+            <label class="input-100">Precio Del Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.PrecioDelProducto)">
+
+            <label class="input-100">Caracteristicas Del Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.CaracteristicasDelProducto)">
+
+       
+            <label class="input-100">Tipo De Producto</label>
+            <input disabled type="text" class="input-100" value="@Html.DisplayFor(model => model.IdTipoDeProductoNavigation.NombreProducto)">
+
+    </form>
+    <form asp-action="Delete" class="form-registro">
+        <div class="cont-input">
+            <input type="hidden" asp-for="IdProducto" />
+            <input type="submit" value="Eliminar" class="btn-regis btn-enviar" />
+            <a asp-action="Index" class="form-link">Volver al listado</a>
+        </div>
+    </form>
+</div>

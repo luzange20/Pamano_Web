@@ -1,0 +1,245 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Pamano</title>
+    <link rel="stylesheet" type="text/css" href="~/css_cliente/estilos.css">
+    <link rel="shortcut icon" href="../img/Logo1.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/Logo1.png" alt=""></a>
+        </div>
+
+        <div class="navegacion">
+            
+            <div class="list_navegacion">
+                <ul>
+                    <li><a asp-area="" asp-controller="Producto" asp-action="Index">PRODUCTOS</a></li>
+                    <li><a href="#QuienesSomos">QUIENES SOMOS</a></li>
+                    <li>
+                        <a href="#">CONTACTENOS</a>
+                        <ul>
+                            <li><a href="#">Direccion</a></li>
+                            <li><a href="#">Redes Sociales</a></li>
+                            <li><a href="#">Correo Electronico</a></li>
+                        </ul>
+                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <a asp-area="Identity" asp-page="/Account/Manage/Index">PERFIL</a>
+                            <ul>
+                                <li><a asp-area="Identity" asp-page="/Account/Manage/Index">Datos Personales</a></li>
+                                <li><a asp-area="Identity" asp-page="/Account/Manage/Email">Cambiar Correo Electronico</a></li>
+                                <li><a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">Cambiar Contraseña</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="cerrar">
+           @if (SignInManager.IsSignedIn(User))
+                {
+                    <div>
+                        <a  asp-area="Identity" asp-page="/Account/Manage/Index" title="Cuenta">@User.Identity.Name</a>
+
+                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="btn-cerr-ses">Cerrar sesion</button>
+                        </form>
+                    </div>
+                }
+                else
+                {   <div class="registrarse">
+                        <a class="registrarse" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
+
+                        <a class="registrarse" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesion</a>
+                    </div>
+                }
+        </div>
+    </nav>
+    <!-- Encabezado -->
+    <header class="fondo_tifblue">
+
+        <div class="Lineas">
+            <ul>
+                <li class="fondo_tifblue ">
+                    <a href="#" class="indice">Inicio</a>
+                    <a href="#" class="indice">Linea Escritura</a>
+                    <a href="#" class="indice">Linea Escolar</a>
+                    <a href="#" class="indice">Linea Oficina</a>
+                    <a href="#" class="indice">Linea Archivo</a>
+                    <a href="#" class="indice">Linea Detalles</a>
+
+
+                    <a asp-controller="Home" asp-action="Perfilcliente"> <img class="fav-car" src="~/img/carrito-de-compras.png"></a>
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a asp-action="CuentaAdmin"><img class="fav-car" src="~/img/inventario.png"/></a>
+                    }
+
+                 </li>
+            </ul>
+        </div>
+    </header>
+    <div>
+        <main role="main" class="pb-3">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="../img/CuadernosKiut.jpeg" alt="Primer slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 h-90" src="../img/Resaltadores.jpeg" alt="segundo slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100  " src="../img/CuadernosScribe.jpeg" alt="tercero slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 " src="../img/CuadernosKiut.jpeg" alt="cuarto slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 " src="../img/Resaltadores.jpeg" alt="Quinto slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 " src="../img/CuadernosScribe.jpeg" alt="Sexto slide">
+                    </div>
+                </div>
+            </div>
+            <div class="div-NuestrasMarcas">
+                <div class="div-Titulo">
+                    <h2 class="Titulo">Nuestras Marcas</h2>
+                </div>
+                <div class="div-marcas">
+                    <div class="cont-marca">
+                        <div class="offiesco">
+                            <img src="../img/offiesco.png" class="img-fluid">
+                        </div>
+                    </div>
+
+                    <div class="cont-marca">
+                        <div class="offiesco">
+                            <img src="../img/faber.png" class="img-fluid">
+                        </div>
+                    </div>
+
+                    <div class="cont-marca">
+                        <div class="offiesco">
+                            <img class="img-fluid" src="../img/colombina.png">
+                        </div>
+                    </div>
+
+                    <div class="cont-marca">
+                        <div class="offiesco">
+                            <img src="../img/ramo.png" class="img-fluid">
+                        </div>
+
+                    </div>
+
+                    <div class="cont-marca offiesco">
+
+                        <img src="../img/frito.png" class="img-fluid">
+                    </div>
+                    <div class="cont-marca">
+                        <div class="offiesco text-center">
+                            <img src="../img/norma.png" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <div class=" div-QuienesSomos">
+                <div class="div-Titulo">
+                    <h2 id="#QuienesSomos" class="Titulo">Quienes Somos</h2>
+                </div>
+                <div class="div-Info">
+                    <div class="iconoVision">
+                        <img src="../img/vision.png" alt="">
+                    </div>
+                    <div class="textoQuienes">
+                        <h3>VISION</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                </div>
+                <div class="div-Info">
+                    <div class="iconoVision">
+                        <img src="../img/mision.png" alt="">
+                    </div>
+                    <div class="textoQuienes">
+                        <h3>MISION</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                </div>
+                <div class="div-Info ">
+                    <div class="iconoprov">
+                        <img src="../img/inventario.png" alt="">
+                    </div>
+                    <div class="textoQuienes">
+                        <h3>PROVEEDORES</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                </div>
+            </div>
+            <div class="CONTACTENOS">
+                <div class="div-Titulo">
+                    <h2 class="Titulo">Contactenos</h2>
+                </div>
+                <div class="form-contacto">
+                    <form class="form-registro" onsubmit="return" action="#" method="post">
+
+                        <h2 class="form-titulo">Contacta con nosotros</h2>
+                        <div class="cont-input">
+                            <input type="text" name="Nombres" placeholder="Nombres" class="input-50">
+                            <input type="text" name="Apellidos" placeholder="Apellidos" class="input-50">
+                            <input type="email" name="Correo" placeholder="Correo electronico" class="input-100">
+                            <textarea type="text" name="Mensaje" placeholder="Cuentanos" class="input-100 text-enviar"></textarea>
+                            <input type="submit" value="Enviar" class="btn-enviar">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="mapa">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.6857365118162!2d-74.07503538568643!3d4.650025743390728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a4bb916d97f%3A0x6f4c1d7a992e5d03!2sP%40peleri%40%20Pamano!5e0!3m2!1ses!2sco!4v1606542402952!5m2!1ses!2sco"></iframe>
+                </div>
+                <div class="Direccion">
+
+                    <div class="facebook1">
+                        <img src="../img/facebook.png">
+                    </div>
+
+                    <div class="instag">
+                        <img src="../img/instagram.png">
+                    </div>
+                    <h4>Pamano</h4>
+                </div>
+
+            </div>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Pamano <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
